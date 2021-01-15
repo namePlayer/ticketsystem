@@ -40,3 +40,8 @@ if(strpos($requestedUrl,'/ticket/') !== FALSE) {
     require_once ACTION_DIR.'viewticket.php';
     exit();
 }
+
+if(strpos($requestedUrl,'/newticket') !== FALSE) {
+    require_once ACTION_DIR.'newticket.php';
+    exit();
+}
