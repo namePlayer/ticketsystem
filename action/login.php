@@ -24,7 +24,7 @@ if(isset($_POST['loginEmail'], $_POST['loginPassword'])) {
 
         $stmt = $dbConnection->prepare('SELECT `account_id`,`password` FROM `Account` WHERE `email` = :email');
         $stmt->bindParam(':email', $email);
-        if($stmt->execute() && $stmt->rowCount() > 0) {
+        if($stmt->execute() && $stmt->rowCount() > 0 && password_verify($password, $stmt->fetch()['password'])) {
             $messages[] = ['type' => 'success', 'message' => 'Sie wurden erfolgreich angemeldet!'];
 
             $_SESSION['ticketSystemLogin'] = $stmt->fetch()['account_id'];
@@ -34,6 +34,13 @@ if(isset($_POST['loginEmail'], $_POST['loginPassword'])) {
             $execute = false;
         }
     }
+
+    if($execute == true) {
+        $messages[] = ['type' => 'danger', 'message' => 'Es ist ein Fehler während der Anmeldung aufgetreten!'];
+        $execute = false;
+    }
+
+
 
 }
 
