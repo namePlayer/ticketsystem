@@ -1,0 +1,11 @@
+{
+    "name": "nameplayer/ticketsystem",
+    "type": "project",
+    "authors": [
+        {
+            "name": "namePlayer",
+            "email": "robin@npcore.net"
+        }
+    ],
+    "require": {}
+}
