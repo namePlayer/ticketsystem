@@ -10,24 +10,28 @@ if(isset($_POST['loginEmail'], $_POST['loginPassword'])) {
     $password = $_POST['loginPassword'];
     $execute = true;
 
-    if(empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $messages[] = ['type' => 'danger', 'message' => 'Bitte geben Sie eine gültige Email Adresse an!'];
         $execute = false;
     }
 
-    if(empty($password)) {
+    if (empty($password)) {
         $messages[] = ['type' => 'danger', 'message' => 'Bitte geben Sie ein Passwort an!'];
         $execute = false;
     }
 
-    if($execute == true) {
+    if ($execute == true) {
 
         $stmt = $dbConnection->prepare('SELECT `account_id`,`password` FROM `Account` WHERE `email` = :email');
         $stmt->bindParam(':email', $email);
-        if($stmt->execute() && $stmt->rowCount() > 0 && password_verify($password, $stmt->fetch()['password'])) {
-            $messages[] = ['type' => 'success', 'message' => 'Sie wurden erfolgreich angemeldet!'];
+        $stmt->execute();
+        $data = $stmt->fetch();
+        $dbPassword = $data['password'];
+        if ($stmt->rowCount() > 0 && password_verify($password, $dbPassword)) {
 
-            $_SESSION['ticketSystemLogin'] = $stmt->fetch()['account_id'];
+            $_SESSION['ticketSystemFlashMessage'] = ['type' => 'success', 'message' => 'Sie wurden erfolgreich angemeldet!'];
+
+            $_SESSION['ticketSystemLogin'] = $data['account_id'];
 
             header('Location: ' . $requestedPath . '/home');
 
@@ -35,12 +39,10 @@ if(isset($_POST['loginEmail'], $_POST['loginPassword'])) {
         }
     }
 
-    if($execute == true) {
-        $messages[] = ['type' => 'danger', 'message' => 'Es ist ein Fehler während der Anmeldung aufgetreten!'];
+    if ($execute == true) {
+        $messages[] = ['type' => 'danger', 'message' => 'Es ist ein Fehler während der Anmeldung aufgetreten! '];
         $execute = false;
     }
-
-
 
 }
 

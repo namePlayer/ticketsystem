@@ -5,14 +5,13 @@ class AccountSource
 {
 
     private $dbConnection;
-    private $userId;
     private $userData;
 
     public function __construct(pdo $pdo, int $userId = 0)
     {
         $this->dbConnection = $pdo;
 
-        $stmt = $pdo->prepare("SELECT `email`,`firstname`,`lastname`,`registered`,`type` FROM `Account` WHERE `account_id` = :accountId");
+        $stmt = $pdo->prepare("SELECT `email`,`firstname`,`lastname`,`registered`,`type`,`group_id` FROM `Account` WHERE `account_id` = :accountId");
         $stmt->bindParam(':accountId', $userId);
         $stmt->execute();
 
@@ -33,6 +32,11 @@ class AccountSource
             return true;
         }
         return false;
+    }
+
+    public function getGroupId(): int
+    {
+        return $this->userData['group_id'];
     }
 
 }

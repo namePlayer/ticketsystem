@@ -13,7 +13,7 @@
     <?php require_once TEMPLATE_DIR.'element/navigation.php'; ?>
 
     <div class="container mt-4">
-        <?php $templateBuilder->renderMessages($messages); ?>
+        <?= $templateBuilder->renderMessages($messages); ?>
         <div class="row">
             <div class="col-5">
                 <h5>Registrieren</h5>

@@ -17,7 +17,7 @@
         <a href="<?= $requestedPath ?>/newticket" class="btn btn-dark btn-sm float-end">Neues Ticket</a>
         <br>
         <hr>
-        <?php $templateBuilder->renderMessages($messages); ?>
+        <?= $templateBuilder->renderMessages($messages); ?>
         <table class="table">
             <thead>
                 <tr>

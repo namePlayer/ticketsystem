@@ -45,3 +45,19 @@ if(strpos($requestedUrl,'/newticket') !== FALSE) {
     require_once ACTION_DIR.'newticket.php';
     exit();
 }
+
+if(strpos($requestedUrl,'/supportarea/tickets/open') !== FALSE) {
+    require_once ACTION_DIR.'supportArea.openTickets.php';
+    exit();
+}
+
+if(strpos($requestedUrl,'/supportarea/viewticket') !== FALSE) {
+    require_once ACTION_DIR.'supportArea.openTickets.php';
+    exit();
+}
+
+
+if(strpos($requestedUrl,'/supportarea') !== FALSE) {
+    require_once ACTION_DIR.'supportArea.php';
+    exit();
+}

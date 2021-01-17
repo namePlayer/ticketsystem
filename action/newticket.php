@@ -27,11 +27,12 @@ if(isset($_POST['newTicketSubject'], $_POST['newTicketMessage'])) {
         $timeNow = time();
         $creatorId = getAccountId();
 
-        $stmt = $dbConnection->prepare('INSERT INTO `Ticket` SET `subject` = :subject, `assigned_group` = :agroup, `created` = :timenow, `creator` = :creator');
+        $stmt = $dbConnection->prepare('INSERT INTO `Ticket` SET `subject` = :subject, `assigned_group` = :agroup, `created` = :timenow, `creator` = :creator, `message` = :msg');
         $stmt->bindParam(':subject', $subject);
         $stmt->bindParam(':agroup', $defaultGroup);
         $stmt->bindParam(':timenow', $timeNow);
         $stmt->bindParam(':creator', $creatorId);
+        $stmt->bindParam(':msg', $message);
         if($stmt->execute()) {
             $_SESSION['ticketSystemFlashMessage'] = ['type' => 'success', 'message' => 'Ihr Ticket wurde angelegt!'];
             header('Location: ' . $requestedPath . '/mytickets');

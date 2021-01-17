@@ -14,7 +14,7 @@
 
     <div class="container mt-4">
 
-        <?php $templateBuilder->renderMessages($messages); ?>
+        <?= $templateBuilder->renderMessages($messages); ?>
 
         <div class="row">
             <div class="col-5">

@@ -23,7 +23,7 @@
                     if($accountSource->hasSupportBackend()):
                     ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?= $requestedPath ?>/myaccount">Support-Bereich</a>
+                            <a class="nav-link" href="<?= $requestedPath ?>/supportarea">Support-Bereich</a>
                         </li>
                     <?php
                     endif;

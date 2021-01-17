@@ -16,7 +16,7 @@
         <h4>Neues Ticket anlegen</h4>
         <hr>
 
-        <?php $templateBuilder->renderMessages($messages) ?>
+        <?= $templateBuilder->renderMessages($messages) ?>
 
         <form action="" method="post">
             <div class="row">

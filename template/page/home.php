@@ -12,5 +12,9 @@
 
     <?php require_once TEMPLATE_DIR.'element/navigation.php'; ?>
 
+    <div class="container mt-4">
+        <?= $templateBuilder->renderMessages($messages); ?>
+    </div>
+
 </body>
 </html>
